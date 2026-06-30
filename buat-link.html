@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Link Undangan — Sabrina & Alak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary: #785d32;
+            --gold: #d4af37;
+            --gold-light: #f0d060;
+            --dark: #1e1510;
+            --card-bg: rgba(255,255,255,0.06);
+            --border: rgba(255,255,255,0.15);
+            --text: rgba(255,255,255,0.9);
+            --muted: rgba(255,255,255,0.5);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e1510 0%, #2d1f0e 50%, #1a1208 100%);
+            min-height: 100vh;
+            color: var(--text);
+            padding: 2rem 1rem 4rem;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .header-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--gold-light);
+            text-shadow: 0 2px 12px rgba(212,175,55,0.4);
+        }
+        .header-sub {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .header-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 1rem auto;
+        }
+
+        /* ---- BASE URL SETTING ---- */
+        .base-url-notice {
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 12px;
+            padding: 0.875rem 1.25rem;
+            font-size: 0.72rem;
+            color: var(--gold-light);
+            max-width: 680px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .base-url-notice i { font-size: 1rem; flex-shrink: 0; }
+
+        /* ---- CARD ---- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            max-width: 680px;
+            margin: 0 auto 1.5rem;
+        }
+        .card-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ---- URL CONFIG ---- */
+        .url-config {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .url-prefix-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+        .url-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.875rem;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .url-input:focus { border-color: rgba(212,175,55,0.6); }
+        .url-input::placeholder { color: var(--muted); }
+
+        /* ---- SINGLE GENERATOR ---- */
+        .generate-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .form-input {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.7rem 0.875rem;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .form-input:focus { border-color: rgba(212,175,55,0.6); }
+        .form-input::placeholder { color: var(--muted); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.7rem 1.25rem;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #c9a96e);
+            border-color: rgba(212,175,55,0.4);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #1e1510;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+        }
+        .btn-copy {
+            background: rgba(212,175,55,0.15);
+            border-color: rgba(212,175,55,0.4);
+            color: var(--gold-light);
+        }
+        .btn-copy:hover {
+            background: rgba(212,175,55,0.3);
+            transform: translateY(-1px);
+        }
+        .btn-wa {
+            background: rgba(37,211,102,0.15);
+            border-color: rgba(37,211,102,0.4);
+            color: #25d366;
+        }
+        .btn-wa:hover {
+            background: rgba(37,211,102,0.3);
+            transform: translateY(-1px);
+        }
+        .btn-del {
+            background: rgba(220,53,69,0.1);
+            border-color: rgba(220,53,69,0.3);
+            color: #ff6b7a;
+            padding: 0.5rem 0.75rem;
+        }
+        .btn-del:hover { background: rgba(220,53,69,0.2); }
+
+        /* ---- RESULT DISPLAY ---- */
+        .result-box {
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            display: none;
+        }
+        .result-box.show { display: block; }
+        .result-label {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        .result-url {
+            font-size: 0.72rem;
+            color: var(--text);
+            word-break: break-all;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        .result-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ---- BULK SECTION ---- */
+        .bulk-textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.875rem;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            outline: none;
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.7;
+            transition: border-color 0.3s;
+        }
+        .bulk-textarea:focus { border-color: rgba(212,175,55,0.6); }
+        .bulk-textarea::placeholder { color: var(--muted); }
+
+        .bulk-hint {
+            font-size: 0.65rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* ---- LIST RESULT ---- */
+        .list-result {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .list-item {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            animation: slide-in 0.3s ease;
+        }
+        .list-item-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            flex: 1;
+            min-width: 120px;
+        }
+        .list-item-url {
+            font-size: 0.65rem;
+            color: var(--muted);
+            word-break: break-all;
+            width: 100%;
+        }
+        .list-item-actions {
+            display: flex;
+            gap: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        /* ---- COPY ALL BUTTON ---- */
+        .copy-all-bar {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+        .copy-all-bar.show { display: flex; }
+        .total-badge {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+        .total-badge strong { color: var(--gold-light); }
+
+        /* ---- TOAST ---- */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(20,15,8,0.95);
+            border: 1px solid rgba(212,175,55,0.5);
+            border-radius: 50px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            white-space: nowrap;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ---- SEPARATOR ---- */
+        .sep {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        .sep-line { flex: 1; height: 1px; background: var(--border); }
+        .sep-text { font-size: 0.65rem; color: var(--muted); letter-spacing: 1px; }
+
+        /* ---- SCROLLBAR ---- */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 2px; }
+
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .generate-row { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-script">Sabrina & Alak</div>
+        <div class="header-divider"></div>
+        <div class="header-sub">🔗 Generator Link Undangan</div>
+    </div>
+
+    <!-- Notice -->
+    <div class="base-url-notice">
+        <i class="bi bi-info-circle"></i>
+        <span>
+            Setelah deploy ke Vercel/GitHub, isi <strong>Base URL</strong> di bawah dengan URL undanganmu.
+            Sebelum deploy, gunakan URL lokal untuk preview.
+        </span>
+    </div>
+
+    <!-- === CARD: BASE URL CONFIG === -->
+    <div class="card">
+        <div class="card-title"><i class="bi bi-link-45deg"></i> Konfigurasi Base URL</div>
+        <div class="url-config">
+            <span class="url-prefix-label">URL Undangan:</span>
+            <input
+                type="url"
+                id="baseUrl"
+                class="url-input"
+                placeholder="https://undangan-sabrina-alak.vercel.app"
+                value=""
+            >
+        </div>
+        <div style="margin-top: 0.6rem; font-size: 0.65rem; color: var(--muted);">
+            Contoh: <code style="color:var(--gold-light)">https://undangan-sabrina-alak.vercel.app</code>
+            atau jika lokal: <code style="color:var(--gold-light)">file:///Users/mac/Downloads/Undangan Pak Mul/index.html</code>
+        </div>
+    </div>
+
+    <!-- === CARD: SINGLE LINK GENERATOR === -->
+    <div class="card">
+        <div class="card-title"><i class="bi bi-person-plus"></i> Buat Link Satu Tamu</div>
+
+        <div class="generate-row">
+            <div class="form-group">
+                <label class="form-label">Nama Tamu</label>
+                <input
+                    type="text"
+                    id="singleName"
+                    class="form-input"
+                    placeholder="contoh: Bpk. Ahmad Santoso"
+                    onkeypress="handleEnter(event)"
+                >
+            </div>
+            <button class="btn btn-primary" onclick="generateSingle()">
+                <i class="bi bi-magic"></i> Generate
+            </button>
+        </div>
+
+        <!-- Result -->
+        <div class="result-box" id="singleResult">
+            <div class="result-label">🔗 Link Undangan untuk <span id="resultName"></span></div>
+            <div class="result-url" id="resultUrl"></div>
+            <div class="result-actions">
+                <button class="btn btn-copy" onclick="copyLink('resultUrl')">
+                    <i class="bi bi-clipboard"></i> Salin Link
+                </button>
+                <button class="btn btn-wa" onclick="shareWA('resultUrl', 'resultName')">
+                    <i class="bi bi-whatsapp"></i> Kirim WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- === CARD: BULK GENERATOR === -->
+    <div class="card">
+        <div class="card-title"><i class="bi bi-people"></i> Buat Link Banyak Tamu Sekaligus</div>
+
+        <div>
+            <textarea
+                class="bulk-textarea"
+                id="bulkInput"
+                placeholder="Tulis nama tamu, satu per baris:
+
+Bpk. Ahmad Santoso
+Ibu Siti Rahayu
+Keluarga Besar Mulyono
+Pak Hendra & Bu Dewi
+..."
+            ></textarea>
+            <div class="bulk-hint">
+                ✏️ Tulis satu nama per baris. Baris kosong akan dilewati.
+            </div>
+        </div>
+
+        <div style="margin-top: 1rem;">
+            <button class="btn btn-primary" onclick="generateBulk()" style="width: 100%; justify-content: center;">
+                <i class="bi bi-list-check"></i> Generate Semua Link
+            </button>
+        </div>
+
+        <!-- List Result -->
+        <div class="list-result" id="bulkResult"></div>
+
+        <!-- Copy All Bar -->
+        <div class="copy-all-bar" id="copyAllBar">
+            <div class="total-badge">Total: <strong id="totalCount">0</strong> link</div>
+            <div style="display:flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-copy" onclick="copyAllLinks()">
+                    <i class="bi bi-clipboard-check"></i> Salin Semua Link
+                </button>
+                <button class="btn btn-copy" onclick="copyWAFormat()">
+                    <i class="bi bi-whatsapp"></i> Format WhatsApp
+                </button>
+                <button class="btn btn-del" onclick="clearBulk()">
+                    <i class="bi bi-trash"></i> Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- === CARD: HOW TO USE === -->
+    <div class="card" style="border-color: rgba(212,175,55,0.2);">
+        <div class="card-title"><i class="bi bi-question-circle"></i> Cara Pakai</div>
+        <div style="font-size: 0.75rem; color: var(--muted); line-height: 2;">
+            <div>1️⃣ &nbsp;Isi <strong style="color:var(--gold-light)">Base URL</strong> dengan URL undangan setelah di-deploy</div>
+            <div>2️⃣ &nbsp;Ketik nama tamu → klik <strong style="color:var(--gold-light)">Generate</strong></div>
+            <div>3️⃣ &nbsp;Link langsung muncul, salin atau kirim via WhatsApp</div>
+            <div>4️⃣ &nbsp;Untuk banyak tamu sekaligus, pakai fitur <strong style="color:var(--gold-light)">Bulk Generator</strong></div>
+            <br>
+            <div style="background: rgba(212,175,55,0.08); border-radius: 8px; padding: 0.75rem; border: 1px solid rgba(212,175,55,0.2);">
+                💡 <strong style="color:var(--gold-light)">Format URL:</strong><br>
+                <code style="color: var(--text); font-size: 0.7rem;">https://undangan.vercel.app<span style="color:var(--gold-light)">?to=Nama+Tamu</span></code><br><br>
+                Saat tamu buka link, nama mereka otomatis muncul di undangan.
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="bi bi-check-circle"></i>
+        <span id="toastText">Disalin!</span>
+    </div>
+
+    <script>
+    // ---- STATE ----
+    let generatedLinks = []; // { name, url }
+
+    // ---- AUTO-DETECT BASE URL ----
+    window.addEventListener('DOMContentLoaded', () => {
+        const currentUrl = window.location.href;
+        // If opened from file://, suggest localhost or let user fill
+        if (currentUrl.startsWith('file://')) {
+            // Suggest the file URL base
+            const base = currentUrl.replace('buat-link.html', 'index.html');
+            document.getElementById('baseUrl').placeholder = base;
+        } else {
+            // Use current domain as default
+            const base = window.location.origin + window.location.pathname.replace('buat-link.html', '');
+            document.getElementById('baseUrl').value = base.replace(/\/$/, '');
+        }
+    });
+
+    // ---- HELPERS ----
+    function getBaseUrl() {
+        let url = document.getElementById('baseUrl').value.trim();
+        if (!url) {
+            url = document.getElementById('baseUrl').placeholder;
+        }
+        // Ensure no trailing slash and points to index.html
+        url = url.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        return url;
+    }
+
+    function buildLink(name) {
+        const base = getBaseUrl();
+        const encoded = encodeURIComponent(name);
+        // file:// lokal butuh index.html eksplisit
+        if (base.startsWith('file://')) {
+            return base + '/index.html?to=' + encoded;
+        }
+        // Vercel/hosting: cukup /?to= (lebih bersih)
+        return base + '/?to=' + encoded;
+    }
+
+    function handleEnter(e) {
+        if (e.key === 'Enter') generateSingle();
+    }
+
+    // ---- SINGLE GENERATOR ----
+    function generateSingle() {
+        const name = document.getElementById('singleName').value.trim();
+        if (!name) {
+            showToast('⚠️ Masukkan nama tamu dulu');
+            return;
+        }
+
+        const link = buildLink(name);
+        document.getElementById('resultName').textContent = name;
+        document.getElementById('resultUrl').textContent = link;
+        document.getElementById('singleResult').classList.add('show');
+        document.getElementById('singleResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ---- BULK GENERATOR ----
+    function generateBulk() {
+        const raw = document.getElementById('bulkInput').value;
+        const names = raw.split('\n')
+            .map(n => n.trim())
+            .filter(n => n.length > 0);
+
+        if (names.length === 0) {
+            showToast('⚠️ Tulis minimal satu nama');
+            return;
+        }
+
+        generatedLinks = names.map(name => ({ name, url: buildLink(name) }));
+        renderBulkList();
+        showToast(`✅ ${names.length} link berhasil dibuat!`);
+    }
+
+    function renderBulkList() {
+        const container = document.getElementById('bulkResult');
+        const copyAllBar = document.getElementById('copyAllBar');
+        document.getElementById('totalCount').textContent = generatedLinks.length;
+
+        container.innerHTML = generatedLinks.map((item, idx) => `
+            <div class="list-item" id="item-${idx}">
+                <div style="flex: 1; min-width: 0;">
+                    <div class="list-item-name">👤 ${escapeHtml(item.name)}</div>
+                    <div class="list-item-url">${escapeHtml(item.url)}</div>
+                </div>
+                <div class="list-item-actions">
+                    <button class="btn btn-copy" onclick="copyText('${escapeAttr(item.url)}', '${escapeAttr(item.name)}')" title="Salin link">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                    <button class="btn btn-wa" onclick="shareWADirect('${escapeAttr(item.url)}', '${escapeAttr(item.name)}')" title="WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                    </button>
+                    <button class="btn btn-del" onclick="removeItem(${idx})" title="Hapus">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        copyAllBar.classList.add('show');
+    }
+
+    function removeItem(idx) {
+        generatedLinks.splice(idx, 1);
+        if (generatedLinks.length === 0) {
+            clearBulk();
+        } else {
+            renderBulkList();
+        }
+    }
+
+    function clearBulk() {
+        generatedLinks = [];
+        document.getElementById('bulkResult').innerHTML = '';
+        document.getElementById('copyAllBar').classList.remove('show');
+        document.getElementById('bulkInput').value = '';
+    }
+
+    // ---- COPY FUNCTIONS ----
+    function copyLink(elId) {
+        const text = document.getElementById(elId).textContent;
+        copyToClipboard(text);
+        showToast('✅ Link disalin!');
+    }
+
+    function copyText(url, name) {
+        copyToClipboard(url);
+        showToast(`✅ Link untuk ${name} disalin!`);
+    }
+
+    function copyAllLinks() {
+        const text = generatedLinks
+            .map(item => `${item.name}:\n${item.url}`)
+            .join('\n\n');
+        copyToClipboard(text);
+        showToast(`✅ Semua ${generatedLinks.length} link disalin!`);
+    }
+
+    function copyWAFormat() {
+        const text = generatedLinks
+            .map(item =>
+                `Assalamu'alaikum, Kepada Yth. *${item.name}*\n` +
+                `Berikut link undangan pernikahan kami:\n${item.url}\n`
+            )
+            .join('\n---\n\n');
+        copyToClipboard(text);
+        showToast('✅ Format WhatsApp disalin! Paste ke WA Web.');
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+        } else {
+            fallbackCopy(text);
+        }
+    }
+
+    function fallbackCopy(text) {
+        const el = document.createElement('textarea');
+        el.value = text;
+        el.style.position = 'fixed';
+        el.style.opacity = '0';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+
+    // ---- WHATSAPP SHARE ----
+    function shareWA(urlElId, nameElId) {
+        const url = document.getElementById(urlElId).textContent;
+        const name = document.getElementById(nameElId).textContent;
+        shareWADirect(url, name);
+    }
+
+    function shareWADirect(url, name) {
+        const msg = encodeURIComponent(
+            `Assalamu'alaikum,\n\nKepada Yth. *${name}*\n\n` +
+            `Dengan penuh kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam pernikahan kami.\n\n` +
+            `🌸 *Sabrina Alya & Ahmad Aulia Akmal*\n` +
+            `📅 Akad: Senin, 27 Juli 2026\n` +
+            `📅 Resepsi: Sabtu, 1 Agustus 2026\n` +
+            `📍 Kota Malang\n\n` +
+            `Berikut link undangan digital:\n${url}\n\n` +
+            `Wassalamu'alaikum Wr. Wb. 🤲`
+        );
+        window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    // ---- TOAST ----
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        document.getElementById('toastText').textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ---- ESCAPE HELPERS ----
+    function escapeHtml(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    function escapeAttr(str) {
+        return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+    </script>
+</body>
+</html>

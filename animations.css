@@ -1,0 +1,44 @@
+/* ================================================
+   Wedding Invitation - Sabrina & Alak
+   Additional Firefly & Background Animations
+   ================================================ */
+
+/* Randomize firefly positions */
+.firefly:nth-child(1)  { --fx: 30px;  --fy: -60px; }
+.firefly:nth-child(2)  { --fx: -40px; --fy: -30px; }
+.firefly:nth-child(3)  { --fx: 20px;  --fy: -80px; }
+.firefly:nth-child(4)  { --fx: -20px; --fy: -50px; }
+.firefly:nth-child(5)  { --fx: 50px;  --fy: -40px; }
+.firefly:nth-child(6)  { --fx: -30px; --fy: -70px; }
+.firefly:nth-child(7)  { --fx: 40px;  --fy: -20px; }
+.firefly:nth-child(8)  { --fx: -50px; --fy: -60px; }
+.firefly:nth-child(9)  { --fx: 10px;  --fy: -90px; }
+.firefly:nth-child(10) { --fx: -15px; --fy: -45px; }
+.firefly:nth-child(11) { --fx: 60px;  --fy: -30px; }
+.firefly:nth-child(12) { --fx: -25px; --fy: -55px; }
+
+/* Particle shimmer on top/bottom of sections */
+.schedule-content::before,
+.lovestory-content::before,
+.gallery-content::before,
+.wish-content::before,
+.closing-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
+}
+
+/* Gold sparkle decorators */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
