@@ -381,35 +381,33 @@ function submitRSVP(e) {
     btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Mengirim...';
     btn.disabled = true;
 
-    // Siapkan data
-    const formData = new FormData();
-    formData.append('action', 'rsvp');
-    formData.append('name', name);
-    formData.append('attend', attend);
-    formData.append('guests', guests);
+    // Kirim via GET + URL params (paling stabil untuk Google Apps Script)
+    const params = new URLSearchParams({
+        action : 'rsvp',
+        name   : name,
+        attend : attend,
+        guests : guests
+    });
 
-    fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+    fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' })
         .then(() => {
             const attendMessages = {
                 'hadir': `🎉 Terima kasih ${name}! Kami tunggu kehadiranmu!`,
                 'tidak': `😢 Sayang sekali ${name} tidak bisa hadir. Terima kasih atas doanya!`,
-                'ragu': `🙏 Baik ${name}, kami tunggu konfirmasi selanjutnya!`
+                'ragu' : `🙏 Baik ${name}, kami tunggu konfirmasi selanjutnya!`
             };
             showToast(attendMessages[attend] || '✅ Konfirmasi terkirim!');
             document.getElementById('rsvpForm').reset();
-            
-            // Simpan ke local storage juga sebagai backup
+
+            // Simpan juga ke localStorage sebagai backup tampilan
             const rsvps = JSON.parse(localStorage.getItem('wedding-rsvp') || '[]');
             rsvps.push({ name, attend, guests, time: new Date().toISOString() });
             localStorage.setItem('wedding-rsvp', JSON.stringify(rsvps));
         })
-        .catch(error => {
-            showToast('❌ Gagal mengirim, silakan coba lagi');
-            console.error('Error!', error.message);
-        })
+        .catch(() => showToast('❌ Gagal mengirim, coba lagi'))
         .finally(() => {
             btn.innerHTML = originalText;
-            btn.disabled = false;
+            btn.disabled  = false;
         });
 }
 
@@ -437,32 +435,28 @@ function submitWish(e) {
         weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
     });
 
-    const formData = new FormData();
-    formData.append('action', 'wish');
-    formData.append('name', name);
-    formData.append('message', message);
+    // Kirim via GET + URL params
+    const params = new URLSearchParams({
+        action  : 'wish',
+        name    : name,
+        message : message
+    });
 
-    fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+    fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' })
         .then(() => {
-            // Save wish to local storage for display
-            const wishes = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
+            const wishes  = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
             const newWish = { name, message, time: timeString };
             wishes.unshift(newWish);
             localStorage.setItem('wedding-wishes', JSON.stringify(wishes));
 
-            // Render new wish
             addWishToDOM(newWish, true);
-
-            showToast('💌 Ucapan telah terkirim! Terima kasih!');
+            showToast('💌 Ucapan terkirim! Terima kasih!');
             document.getElementById('wishForm').reset();
         })
-        .catch(error => {
-            showToast('❌ Gagal mengirim ucapan');
-            console.error('Error!', error.message);
-        })
+        .catch(() => showToast('❌ Gagal mengirim ucapan, coba lagi'))
         .finally(() => {
             btn.innerHTML = originalText;
-            btn.disabled = false;
+            btn.disabled  = false;
         });
 }
 
