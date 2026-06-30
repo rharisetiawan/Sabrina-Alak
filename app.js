@@ -135,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init smooth nav clicks
     initNavigation();
 
-    // Load stored wishes
-    renderWishes();
+    // Load ucapan dari server (Google Sheets)
+    fetchWishes();
 });
 
 // ================================================
@@ -460,10 +460,44 @@ function submitWish(e) {
         });
 }
 
-function renderWishes() {
-    const wishes = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
-    wishes.forEach(wish => addWishToDOM(wish, false));
+// Fetch ucapan dari Google Sheets saat halaman dibuka
+function fetchWishes() {
+    const wishesList = document.getElementById('wishesList');
+    if (!wishesList) return;
+
+    // Tampilkan loading sementara
+    wishesList.innerHTML = `<div style="text-align:center; padding: 1.5rem; color: var(--text-muted); font-size:0.78rem;">
+        <i class="bi bi-hourglass-split"></i> Memuat ucapan...
+    </div>`;
+
+    const params = new URLSearchParams({ action: 'get_wishes' });
+
+    fetch(SCRIPT_URL + '?' + params.toString())
+        .then(res => res.json())
+        .then(data => {
+            wishesList.innerHTML = '';
+            if (data.wishes && data.wishes.length > 0) {
+                data.wishes.forEach(wish => addWishToDOM(wish, false));
+            } else {
+                wishesList.innerHTML = `<div style="text-align:center; padding: 1.5rem; color: var(--text-muted); font-size:0.78rem;">
+                    💌 Belum ada ucapan. Jadilah yang pertama!
+                </div>`;
+            }
+        })
+        .catch(() => {
+            // Jika gagal (misal offline), fallback ke localStorage
+            wishesList.innerHTML = '';
+            const local = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
+            if (local.length > 0) {
+                local.forEach(wish => addWishToDOM(wish, false));
+            } else {
+                wishesList.innerHTML = `<div style="text-align:center; padding: 1.5rem; color: var(--text-muted); font-size:0.78rem;">
+                    💌 Belum ada ucapan. Jadilah yang pertama!
+                </div>`;
+            }
+        });
 }
+
 
 function addWishToDOM(wish, prepend = false) {
     const wishesList = document.getElementById('wishesList');
