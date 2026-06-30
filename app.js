@@ -17,9 +17,12 @@ const GALLERY_IMAGES = [
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini
-// Taylor Swift: iygXgP2nOF4
+// NIKI - Take A Chance With Me: iygXgP2nOF4
 // Cara ganti: buka YouTube, copy bagian ?v=XXXXX dari URL-nya
 const YT_VIDEO_ID = 'iygXgP2nOF4';
+
+// ✏️ GOOGLE SCRIPT URL: masukkan link Web App Google Apps Script Anda di sini
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYRob2MYjA4cK_JiNjIaqwfvlLX-4nkhXbucEBRjT1bbBFHXCvJSB36OonyHGfQasr/exec';
 
 // ================================================
 // DOM REFS
@@ -55,7 +58,7 @@ window.onYouTubeIframeAPIReady = function () {
     ytPlayer = new YT.Player('yt-player', {
         videoId: YT_VIDEO_ID,
         playerVars: {
-            autoplay  : 0,
+            autoplay  : 1, // 1 berarti autoplay (tapi butuh klik user di awal)
             controls  : 0,
             loop      : 1,
             playlist  : YT_VIDEO_ID, // perlu untuk loop
@@ -262,7 +265,7 @@ function setMusicPlaying(playing) {
         musicBtn.setAttribute('title', 'Pause Musik');
         // Tampilkan info lagu
         if (infoEl) {
-            infoEl.textContent = '🎵 Taylor Swift';
+            infoEl.textContent = '🎵 NIKI — Take A Chance With Me';
             infoEl.classList.add('show');
             // Auto hide setelah 5 detik
             clearTimeout(infoEl._timer);
@@ -362,6 +365,9 @@ document.addEventListener('keydown', (e) => {
 // ================================================
 function submitRSVP(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    
     const name = document.getElementById('rsvpName').value.trim();
     const attend = document.getElementById('rsvpAttend').value;
     const guests = document.getElementById('rsvpGuest').value;
@@ -371,21 +377,40 @@ function submitRSVP(e) {
         return;
     }
 
-    // In production, send to backend / Google Sheet
-    // For now, just show confirmation
-    const attendMessages = {
-        'hadir': `🎉 Terima kasih ${name}! Kami tunggu kehadiranmu!`,
-        'tidak': `😢 Sayang sekali ${name} tidak bisa hadir. Terima kasih atas doanya!`,
-        'ragu': `🙏 Baik ${name}, kami tunggu konfirmasi selanjutnya!`
-    };
+    // Ubah tombol jadi loading
+    btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Mengirim...';
+    btn.disabled = true;
 
-    showToast(attendMessages[attend] || '✅ Konfirmasi terkirim!');
-    document.getElementById('rsvpForm').reset();
+    // Siapkan data
+    const formData = new FormData();
+    formData.append('action', 'rsvp');
+    formData.append('name', name);
+    formData.append('attend', attend);
+    formData.append('guests', guests);
 
-    // Store to localStorage
-    const rsvps = JSON.parse(localStorage.getItem('wedding-rsvp') || '[]');
-    rsvps.push({ name, attend, guests, time: new Date().toISOString() });
-    localStorage.setItem('wedding-rsvp', JSON.stringify(rsvps));
+    fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+        .then(() => {
+            const attendMessages = {
+                'hadir': `🎉 Terima kasih ${name}! Kami tunggu kehadiranmu!`,
+                'tidak': `😢 Sayang sekali ${name} tidak bisa hadir. Terima kasih atas doanya!`,
+                'ragu': `🙏 Baik ${name}, kami tunggu konfirmasi selanjutnya!`
+            };
+            showToast(attendMessages[attend] || '✅ Konfirmasi terkirim!');
+            document.getElementById('rsvpForm').reset();
+            
+            // Simpan ke local storage juga sebagai backup
+            const rsvps = JSON.parse(localStorage.getItem('wedding-rsvp') || '[]');
+            rsvps.push({ name, attend, guests, time: new Date().toISOString() });
+            localStorage.setItem('wedding-rsvp', JSON.stringify(rsvps));
+        })
+        .catch(error => {
+            showToast('❌ Gagal mengirim, silakan coba lagi');
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
 }
 
 // ================================================
@@ -393,6 +418,9 @@ function submitRSVP(e) {
 // ================================================
 function submitWish(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    
     const name = document.getElementById('wishName').value.trim();
     const message = document.getElementById('wishMessage').value.trim();
 
@@ -401,26 +429,41 @@ function submitWish(e) {
         return;
     }
 
-    // Save wish
-    const wishes = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
-    const newWish = {
-        name,
-        message,
-        time: new Date().toLocaleString('id-ID', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+    // Ubah tombol jadi loading
+    btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Mengirim...';
+    btn.disabled = true;
+
+    const timeString = new Date().toLocaleString('id-ID', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    });
+
+    const formData = new FormData();
+    formData.append('action', 'wish');
+    formData.append('name', name);
+    formData.append('message', message);
+
+    fetch(SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+        .then(() => {
+            // Save wish to local storage for display
+            const wishes = JSON.parse(localStorage.getItem('wedding-wishes') || '[]');
+            const newWish = { name, message, time: timeString };
+            wishes.unshift(newWish);
+            localStorage.setItem('wedding-wishes', JSON.stringify(wishes));
+
+            // Render new wish
+            addWishToDOM(newWish, true);
+
+            showToast('💌 Ucapan telah terkirim! Terima kasih!');
+            document.getElementById('wishForm').reset();
         })
-    };
-    wishes.unshift(newWish);
-    localStorage.setItem('wedding-wishes', JSON.stringify(wishes));
-
-    // Render new wish
-    addWishToDOM(newWish, true);
-
-    showToast('💌 Ucapan telah terkirim! Terima kasih!');
-    document.getElementById('wishForm').reset();
+        .catch(error => {
+            showToast('❌ Gagal mengirim ucapan');
+            console.error('Error!', error.message);
+        })
+        .finally(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
 }
 
 function renderWishes() {
