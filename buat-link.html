@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
-            --primary: #785d32;
-            --gold: #d4af37;
-            --gold-light: #f0d060;
-            --dark: #1e1510;
+            --primary: #2d6a1f;
+            --gold: #a8c940;
+            --gold-light: #cfe870;
+            --dark: #0e1f08;
             --card-bg: rgba(255,255,255,0.06);
             --border: rgba(255,255,255,0.15);
             --text: rgba(255,255,255,0.9);
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #1e1510 0%, #2d1f0e 50%, #1a1208 100%);
+            background: linear-gradient(135deg, #0e1f08 0%, #1a3a0c 50%, #0a1406 100%);
             min-height: 100vh;
             color: var(--text);
             padding: 2rem 1rem 4rem;
@@ -415,6 +415,45 @@
         </div>
     </div>
 
+    <!-- === CARD: VERSI UNDANGAN === -->
+    <div class="card">
+        <div class="card-title"><i class="bi bi-layers"></i> Pilih Versi Undangan</div>
+        <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+
+            <label style="flex: 1; cursor: pointer;">
+                <input type="radio" name="versi" value="biasa" checked style="display:none;">
+                <div class="versi-btn" id="versi-biasa" style="
+                    border: 2px solid var(--gold);
+                    border-radius: 12px; padding: 0.9rem 0.75rem;
+                    text-align: center; transition: all 0.3s;
+                    background: rgba(100,160,40,0.15);
+                " onclick="setVersi('biasa')">
+                    <div style="font-size: 1.3rem; margin-bottom: 4px;">📩</div>
+                    <div style="font-size: 0.72rem; font-weight: 700; color: var(--gold-light);">Undangan Biasa</div>
+                    <div style="font-size: 0.6rem; color: var(--muted); margin-top: 2px;">Tanpa nomor rekening</div>
+                </div>
+            </label>
+
+            <label style="flex: 1; cursor: pointer;">
+                <input type="radio" name="versi" value="amplop" style="display:none;">
+                <div class="versi-btn" id="versi-amplop" style="
+                    border: 2px solid rgba(255,255,255,0.15);
+                    border-radius: 12px; padding: 0.9rem 0.75rem;
+                    text-align: center; transition: all 0.3s;
+                    background: rgba(255,255,255,0.04);
+                " onclick="setVersi('amplop')">
+                    <div style="font-size: 1.3rem; margin-bottom: 4px;">🎁</div>
+                    <div style="font-size: 0.72rem; font-weight: 700; color: var(--muted);">+ Amplop Digital</div>
+                    <div style="font-size: 0.6rem; color: var(--muted); margin-top: 2px;">Dengan nomor rekening</div>
+                </div>
+            </label>
+
+        </div>
+        <div id="versi-note" style="margin-top:0.75rem; font-size:0.65rem; color:var(--muted); padding: 0.5rem 0.75rem; background: rgba(100,160,40,0.08); border-radius: 8px; border-left: 2px solid var(--gold);">
+            🔗 Link yang akan dibuat: <code id="versi-preview" style="color:var(--gold-light);">/?to=NamaTamu</code>
+        </div>
+    </div>
+
     <!-- === CARD: SINGLE LINK GENERATOR === -->
     <div class="card">
         <div class="card-title"><i class="bi bi-person-plus"></i> Buat Link Satu Tamu</div>
@@ -553,12 +592,42 @@ Pak Hendra & Bu Dewi
     function buildLink(name) {
         const base = getBaseUrl();
         const encoded = encodeURIComponent(name);
-        // file:// lokal butuh index.html eksplisit
+        const versi = document.querySelector('input[name="versi"]:checked')?.value || 'biasa';
+        const page  = versi === 'amplop' ? '/amplop.html' : '/index.html';
+        // file:// lokal butuh nama file eksplisit
         if (base.startsWith('file://')) {
-            return base + '/index.html?to=' + encoded;
+            return base + page + '?to=' + encoded;
         }
-        // Vercel/hosting: cukup /?to= (lebih bersih)
+        // Vercel/hosting
+        if (versi === 'amplop') {
+            return base + '/amplop?to=' + encoded;
+        }
         return base + '/?to=' + encoded;
+    }
+
+    // ---- VERSI SELECTOR ----
+    function setVersi(v) {
+        document.querySelector(`input[name="versi"][value="${v}"]`).checked = true;
+        const biasa  = document.getElementById('versi-biasa');
+        const amplop = document.getElementById('versi-amplop');
+        const preview = document.getElementById('versi-preview');
+        if (v === 'amplop') {
+            amplop.style.border  = '2px solid var(--gold)';
+            amplop.style.background = 'rgba(100,160,40,0.15)';
+            amplop.querySelector('div:nth-child(2)').style.color = 'var(--gold-light)';
+            biasa.style.border   = '2px solid rgba(255,255,255,0.15)';
+            biasa.style.background = 'rgba(255,255,255,0.04)';
+            biasa.querySelector('div:nth-child(2)').style.color = 'var(--muted)';
+            preview.textContent  = '/amplop?to=NamaTamu';
+        } else {
+            biasa.style.border   = '2px solid var(--gold)';
+            biasa.style.background = 'rgba(100,160,40,0.15)';
+            biasa.querySelector('div:nth-child(2)').style.color = 'var(--gold-light)';
+            amplop.style.border  = '2px solid rgba(255,255,255,0.15)';
+            amplop.style.background = 'rgba(255,255,255,0.04)';
+            amplop.querySelector('div:nth-child(2)').style.color = 'var(--muted)';
+            preview.textContent  = '/?to=NamaTamu';
+        }
     }
 
     function handleEnter(e) {

@@ -574,6 +574,35 @@ function shareInvitation() {
 }
 
 // ================================================
+// COPY REKENING (Amplop Digital)
+// ================================================
+function copyRekening(elementId, btn) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    // Ambil teks nomor rekening (tanpa spasi agar mudah di-paste)
+    const nomorBersih = el.textContent.replace(/\s/g, '');
+
+    navigator.clipboard.writeText(nomorBersih)
+        .then(() => {
+            // Visual feedback pada tombol
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-clipboard-check"></i> Tersalin!';
+            btn.classList.add('copied');
+            showToast('✅ Nomor rekening disalin!');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('copied');
+            }, 2500);
+        })
+        .catch(() => {
+            // Fallback jika clipboard API tidak tersedia
+            showToast('📋 Salin nomor: ' + el.textContent);
+        });
+}
+
+
+// ================================================
 // ADD COUNTDOWN STYLE DYNAMIC
 // ================================================
 const style = document.createElement('style');
