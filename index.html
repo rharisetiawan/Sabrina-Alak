@@ -60,6 +60,13 @@
                 <span>Alak</span>
             </div>
             <div class="welcome-date">Senin, 27 Juli 2026 & Sabtu, 1 Agustus 2026</div>
+
+            <!-- Nama Orangtua -->
+            <div style="font-size: 0.72rem; color: rgba(255,255,255,0.75); line-height: 2; text-shadow: 0 1px 6px rgba(0,0,0,0.7);">
+                <div>Putri: <span style="color: var(--gold-light); font-weight: 600;">Bpk. Mulyono &amp; Ibu Ninis Pratiwi</span></div>
+                <div>Putra: <span style="color: var(--gold-light); font-weight: 600;">Bpk. Lilik Ali Masruh &amp; Ibu Nur'ifah</span></div>
+            </div>
+
             <div class="welcome-recipient" id="recipientDisplay">
                 <div class="kepada-text">Kepada Yth.</div>
                 <div class="tamu-name" id="tamuName">Bapak/Ibu/Saudara/i</div>
@@ -140,6 +147,12 @@
                 <div class="cover-content">
                     <div class="cover-top" data-aos="fade-down" data-aos-duration="1000">
                         <div class="section-label" style="color: var(--gold-light); text-shadow: 0 2px 8px rgba(0,0,0,0.8); background: rgba(0,0,0,0.25); display: inline-block; padding: 4px 16px; border-radius: 50px; letter-spacing: 3px;">✦ Undangan Pernikahan ✦</div>
+                        <div style="margin-top: 0.6rem; font-size: 0.62rem; color: rgba(255,255,255,0.7); letter-spacing: 1px; font-weight: 400; text-shadow: 0 1px 6px rgba(0,0,0,0.8);">
+                            Putra-Putri dari<br>
+                            <span style="color: var(--gold-light); font-weight: 500;">Bpk. Mulyono &amp; Ibu Ninis Pratiwi</span>
+                            <span style="margin: 0 6px; opacity: 0.5;">•</span>
+                            <span style="color: var(--gold-light); font-weight: 500;">Bpk. Lilik Ali Masruh &amp; Ibu Nur'ifah</span>
+                        </div>
                     </div>
                     <div class="cover-bottom">
                         <div class="couple-names" data-aos="fade-up" data-aos-delay="200">
@@ -338,53 +351,6 @@
                 </div>
             </section>
 
-            <!-- Section: Love Story -->
-            <section class="section lovestory-section">
-                <div class="lovestory-bg" style="background-image: url('img/cover.jpg')">
-                    <div class="lovestory-overlay"></div>
-                </div>
-                <div class="lovestory-content">
-                    <div class="section-title font-script" data-aos="fade-up">Kisah Cinta</div>
-
-                    <div class="timeline">
-                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                            <div class="timeline-dot">❤</div>
-                            <div class="timeline-card">
-                                <div class="timeline-img" style="background-image: url('img/cover.jpg')"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-year">2018</div>
-                                    <div class="timeline-title">Pertemuan Pertama</div>
-                                    <div class="timeline-text">Perkenalan yang tak terduga di kampus menjadi awal dari kisah cinta yang indah. Kesamaan visi dan mimpi membuat kami semakin dekat.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                            <div class="timeline-dot">💍</div>
-                            <div class="timeline-card">
-                                <div class="timeline-img" style="background-image: url('img/bride.jpg')"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-year">2023</div>
-                                    <div class="timeline-title">Lamaran</div>
-                                    <div class="timeline-text">Dengan penuh keyakinan dan doa, langkah menuju pernikahan pun dimulai. Sebuah momen yang akan selalu dikenang sepanjang masa.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                            <div class="timeline-dot">🌸</div>
-                            <div class="timeline-card">
-                                <div class="timeline-img" style="background-image: url('img/groom.jpg')"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-year">2026</div>
-                                    <div class="timeline-title">Menuju Pernikahan</div>
-                                    <div class="timeline-text">Akhirnya tiba saatnya kami melangkah bersama menuju jenjang pernikahan yang telah lama kami impikan. Alhamdulillah.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <!-- Section: Gallery -->
             <section id="gallery-section" class="section gallery-section">
@@ -396,6 +362,7 @@
                     <div class="gallery-subtitle" data-aos="fade-up" data-aos-delay="100">Momen-momen berharga yang tak terlupakan</div>
 
                     <div class="gallery-grid" id="galleryGrid">
+                        <!-- Foto mempelai -->
                         <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox(0)">
                             <div class="gallery-img" style="background-image: url('img/cover.jpg')">
                                 <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
@@ -416,13 +383,24 @@
                                 <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
                             </div>
                         </div>
-                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox(1)">
-                            <div class="gallery-img" style="background-image: url('img/bride.jpg'); background-position: top;">
+                        <!-- Foto undangan fisik (dari orangtua) -->
+                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox(4)">
+                            <div class="gallery-img" style="background-image: url('img/undangan-1.jpg')">
                                 <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
                             </div>
                         </div>
-                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="350" onclick="openLightbox(2)">
-                            <div class="gallery-img" style="background-image: url('img/groom.jpg'); background-position: top;">
+                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="350" onclick="openLightbox(5)">
+                            <div class="gallery-img" style="background-image: url('img/undangan-2.jpg')">
+                                <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400" onclick="openLightbox(6)">
+                            <div class="gallery-img" style="background-image: url('img/undangan-3.jpg')">
+                                <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-aos="fade-up" data-aos-delay="450" onclick="openLightbox(7)">
+                            <div class="gallery-img" style="background-image: url('img/undangan-4.jpg')">
                                 <div class="gallery-hover"><i class="bi bi-zoom-in"></i></div>
                             </div>
                         </div>

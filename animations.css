@@ -29,7 +29,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.4), transparent);
+    background: linear-gradient(to right, transparent, rgba(100, 160, 40, 0.4), transparent);
 }
 
 /* Gold sparkle decorators */

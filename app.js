@@ -13,7 +13,11 @@ const GALLERY_IMAGES = [
     'img/cover.jpg',
     'img/bride.jpg',
     'img/groom.jpg',
-    'img/gallery.jpg'
+    'img/gallery.jpg',
+    'img/undangan-1.jpg',
+    'img/undangan-2.jpg',
+    'img/undangan-3.jpg',
+    'img/undangan-4.jpg'
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini

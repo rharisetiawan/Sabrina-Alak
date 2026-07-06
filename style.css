@@ -5,13 +5,28 @@
 
 /* === VARIABLES === */
 :root {
-    --primary: #785d32;
-    --primary-dark: #4a3520;
-    --primary-light: #c9a96e;
-    --primary-lighter: #f2e4cc;
-    --gold: #d4af37;
-    --gold-light: #f0d060;
-    --cream: #faf5ee;
+    /* ── TEMA AKTIF: Hijau Alam ────────────────────────
+       Untuk kembali ke tema coklat-emas, swap komentar
+       di bawah ini dengan blok "TEMA LAMA" di bawahnya
+    ─────────────────────────────────────────────────── */
+    --primary:        #2d6a1f;   /* hijau hutan sedang   */
+    --primary-dark:   #122e0a;   /* hijau hutan sangat gelap */
+    --primary-light:  #5a9e30;   /* hijau segar          */
+    --primary-lighter:#c8e6b0;   /* hijau sangat muda    */
+    --gold:           #a8c940;   /* aksen kuning-hijau   */
+    --gold-light:     #cfe870;   /* aksen terang         */
+    --cream:          #f0f7e8;
+
+    /* ── TEMA LAMA: Coklat-Emas (backup) ───────────────
+    --primary:        #785d32;
+    --primary-dark:   #4a3520;
+    --primary-light:  #c9a96e;
+    --primary-lighter:#f2e4cc;
+    --gold:           #d4af37;
+    --gold-light:     #f0d060;
+    --cream:          #faf5ee;
+    ─────────────────────────────────────────────────── */
+
     --white: #ffffff;
     --black: #1a1a1a;
     --text-light: rgba(255, 255, 255, 0.9);
@@ -23,6 +38,7 @@
     --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --font-script: 'Great Vibes', cursive;
     --font-serif: 'Cormorant Garamond', serif;
+
     --font-sans: 'Montserrat', sans-serif;
     --invitation-width: 430px;
 }
@@ -90,7 +106,7 @@ img { max-width: 100%; }
 .preloader-ring {
     width: 80px;
     height: 80px;
-    border: 3px solid rgba(212, 175, 55, 0.2);
+    border: 3px solid rgba(100, 160, 40, 0.2);
     border-top-color: var(--gold);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -136,9 +152,9 @@ img { max-width: 100%; }
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(74, 53, 32, 0.2) 0%,
-        rgba(74, 53, 32, 0.4) 40%,
-        rgba(120, 93, 50, 0.9) 100%
+        rgba(18, 46, 10, 0.2) 0%,
+        rgba(18, 46, 10, 0.4) 40%,
+        rgba(45, 106, 31, 0.9) 100%
     );
 }
 
@@ -235,7 +251,7 @@ img { max-width: 100%; }
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
     color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 12px 32px rgba(100, 160, 40, 0.4);
 }
 
 .open-btn i { font-size: 1.1rem; }
@@ -276,7 +292,7 @@ img { max-width: 100%; }
     height: 4px;
     border-radius: 50%;
     background: var(--gold-light);
-    box-shadow: 0 0 8px 3px rgba(240, 208, 96, 0.6);
+    box-shadow: 0 0 8px 3px rgba(180, 220, 60, 0.6);
     animation: firefly-move 8s ease-in-out infinite;
 }
 
@@ -319,13 +335,13 @@ img { max-width: 100%; }
 }
 
 .music-btn:hover {
-    background: rgba(212, 175, 55, 0.3);
+    background: rgba(100, 160, 40, 0.3);
     transform: scale(1.1);
 }
 
 .music-btn.playing {
     animation: rotate-music 4s linear infinite;
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(100, 160, 40, 0.2);
 }
 
 /* Music info badge */
@@ -335,7 +351,7 @@ img { max-width: 100%; }
     right: 3.75rem;
     z-index: 900;
     background: rgba(20, 15, 8, 0.9);
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    border: 1px solid rgba(100, 160, 40, 0.4);
     border-radius: 50px;
     padding: 0.35rem 0.875rem;
     font-size: 0.65rem;
@@ -401,7 +417,7 @@ img { max-width: 100%; }
 .nav-item:hover,
 .nav-item.active {
     color: var(--gold-light);
-    background: rgba(212, 175, 55, 0.15);
+    background: rgba(100, 160, 40, 0.15);
 }
 
 /* ================================================
@@ -452,7 +468,7 @@ img { max-width: 100%; }
 .sidebar-names {
     font-size: 3.5rem;
     color: var(--gold-light);
-    text-shadow: 2px 4px 20px rgba(212, 175, 55, 0.3);
+    text-shadow: 2px 4px 20px rgba(100, 160, 40, 0.3);
     line-height: 1.2;
 }
 
@@ -506,9 +522,9 @@ img { max-width: 100%; }
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(74, 53, 32, 0.1) 0%,
-        rgba(74, 53, 32, 0.2) 40%,
-        rgba(120, 93, 50, 0.95) 100%
+        rgba(18, 46, 10, 0.1) 0%,
+        rgba(18, 46, 10, 0.2) 40%,
+        rgba(45, 106, 31, 0.95) 100%
     );
 }
 
@@ -636,7 +652,7 @@ img { max-width: 100%; }
 .quote-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(120, 93, 50, 0.3) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(45, 106, 31, 0.3) 0%, transparent 70%);
 }
 
 .quote-content {
@@ -766,7 +782,7 @@ img { max-width: 100%; }
     background: linear-gradient(
         to bottom,
         transparent 40%,
-        rgba(74, 53, 32, 0.95) 100%
+        rgba(18, 46, 10, 0.95) 100%
     );
 }
 
@@ -823,7 +839,7 @@ img { max-width: 100%; }
 }
 
 .sosmed-btn:hover {
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(100, 160, 40, 0.2);
     transform: translateY(-2px);
 }
 
@@ -868,7 +884,7 @@ img { max-width: 100%; }
 .schedule-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(74, 53, 32, 0.88);
+    background: rgba(18, 46, 10, 0.88);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
@@ -918,15 +934,15 @@ img { max-width: 100%; }
 .event-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow);
-    border-color: rgba(212, 175, 55, 0.4);
+    border-color: rgba(100, 160, 40, 0.4);
 }
 
 .event-icon-wrap {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: rgba(212, 175, 55, 0.2);
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: rgba(100, 160, 40, 0.2);
+    border: 1px solid rgba(100, 160, 40, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1001,13 +1017,13 @@ img { max-width: 100%; }
 }
 
 .btn-calendar {
-    background: rgba(212, 175, 55, 0.2);
-    border-color: rgba(212, 175, 55, 0.5);
+    background: rgba(100, 160, 40, 0.2);
+    border-color: rgba(100, 160, 40, 0.5);
     color: var(--gold-light);
 }
 
 .btn-calendar:hover {
-    background: rgba(212, 175, 55, 0.35);
+    background: rgba(100, 160, 40, 0.35);
     transform: translateY(-2px);
 }
 
@@ -1104,7 +1120,7 @@ img { max-width: 100%; }
 
 .timeline-card:hover {
     transform: translateX(4px);
-    border-color: rgba(212, 175, 55, 0.4);
+    border-color: rgba(100, 160, 40, 0.4);
 }
 
 .timeline-img {
@@ -1158,7 +1174,7 @@ img { max-width: 100%; }
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(74, 53, 32, 0.9);
+    background: rgba(18, 46, 10, 0.9);
 }
 
 .gallery-content {
@@ -1204,7 +1220,7 @@ img { max-width: 100%; }
 .gallery-hover {
     position: absolute;
     inset: 0;
-    background: rgba(120, 93, 50, 0.6);
+    background: rgba(45, 106, 31, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1266,7 +1282,7 @@ img { max-width: 100%; }
 .lightbox-close:hover,
 .lightbox-prev:hover,
 .lightbox-next:hover {
-    background: rgba(212, 175, 55, 0.3);
+    background: rgba(100, 160, 40, 0.3);
 }
 
 /* ================================================
@@ -1342,9 +1358,9 @@ img { max-width: 100%; }
 .form-input::placeholder { color: rgba(255, 255, 255, 0.4); }
 
 .form-input:focus {
-    border-color: rgba(212, 175, 55, 0.6);
+    border-color: rgba(100, 160, 40, 0.6);
     background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 0 3px rgba(100, 160, 40, 0.15);
 }
 
 .form-textarea {
@@ -1360,7 +1376,7 @@ img { max-width: 100%; }
 .btn-submit {
     width: 100%;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    border: 2px solid rgba(212, 175, 55, 0.4);
+    border: 2px solid rgba(100, 160, 40, 0.4);
     border-radius: 50px;
     padding: 0.875rem;
     color: var(--white);
@@ -1380,7 +1396,7 @@ img { max-width: 100%; }
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
     color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 24px rgba(100, 160, 40, 0.3);
 }
 
 /* ================================================
@@ -1401,7 +1417,7 @@ img { max-width: 100%; }
 .wish-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(74, 53, 32, 0.87);
+    background: rgba(18, 46, 10, 0.87);
 }
 
 .wish-content {
@@ -1510,7 +1526,7 @@ img { max-width: 100%; }
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(74, 53, 32, 0.85) 0%,
+        rgba(18, 46, 10, 0.85) 0%,
         rgba(26, 26, 26, 0.95) 100%
     );
 }
@@ -1578,7 +1594,7 @@ img { max-width: 100%; }
 .closing-couple-names {
     font-size: 2.5rem;
     color: var(--gold-light);
-    text-shadow: 1px 2px 8px rgba(212, 175, 55, 0.3);
+    text-shadow: 1px 2px 8px rgba(100, 160, 40, 0.3);
     margin-top: 0.5rem;
 }
 
@@ -1589,7 +1605,7 @@ img { max-width: 100%; }
     background: var(--primary-dark);
     padding: 2rem 1.5rem;
     text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid rgba(100, 160, 40, 0.2);
 }
 
 .footer-content {
@@ -1628,7 +1644,7 @@ img { max-width: 100%; }
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: rgba(30, 30, 30, 0.95);
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    border: 1px solid rgba(100, 160, 40, 0.4);
     border-radius: 50px;
     padding: 0.75rem 1.5rem;
     color: var(--gold-light);
@@ -1670,8 +1686,8 @@ img { max-width: 100%; }
 }
 
 @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-    50% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0.2); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(100, 160, 40, 0); }
+    50% { box-shadow: 0 0 0 12px rgba(100, 160, 40, 0.2); }
 }
 
 @keyframes float-petal {
