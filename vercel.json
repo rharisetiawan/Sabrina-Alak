@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "undangan-sabrina-alak",
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/img/(.*)",
