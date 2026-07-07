@@ -2,32 +2,27 @@
   "version": 2,
   "name": "undangan-sabrina-alak",
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/amplop", "destination": "/amplop.html" },
+    { "source": "/buat-link", "destination": "/buat-link.html" }
+  ],
   "headers": [
     {
       "source": "/img/(.*)",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, immutable"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=86400, immutable" }
       ]
     },
     {
       "source": "/(.*)\\.css",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
       ]
     },
     {
       "source": "/(.*)\\.js",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
-        }
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
       ]
     }
   ]

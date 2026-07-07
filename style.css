@@ -51,6 +51,7 @@
 }
 
 html {
+    font-size: 17px;  /* Diperbesar dari 16px default — memperbesar semua teks */
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 }

@@ -584,8 +584,11 @@ Pak Hendra & Bu Dewi
         if (!url) {
             url = document.getElementById('baseUrl').placeholder;
         }
-        // Ensure no trailing slash and points to index.html
-        url = url.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        // Pastikan tidak ada slash di belakang, dan hapus nama file jika tercopy
+        url = url.replace(/\/index\.html$/, '')
+                 .replace(/\/buat-link\.html$/, '')
+                 .replace(/\/buat-link$/, '')
+                 .replace(/\/$/, '');
         return url;
     }
 
@@ -593,12 +596,8 @@ Pak Hendra & Bu Dewi
         const base = getBaseUrl();
         const encoded = encodeURIComponent(name);
         const versi = document.querySelector('input[name="versi"]:checked')?.value || 'biasa';
-        const page  = versi === 'amplop' ? '/amplop.html' : '/index.html';
-        // file:// lokal butuh nama file eksplisit
-        if (base.startsWith('file://')) {
-            return base + page + '?to=' + encoded;
-        }
-        // Vercel/hosting
+        
+        // Gunakan clean URL (Vercel sudah dikonfigurasi dengan rewrite)
         if (versi === 'amplop') {
             return base + '/amplop?to=' + encoded;
         }
@@ -734,7 +733,7 @@ Pak Hendra & Bu Dewi
         const text = generatedLinks
             .map(item =>
                 `Assalamu'alaikum, Kepada Yth. *${item.name}*\n` +
-                `Berikut link undangan pernikahan kami:\n${item.url}\n`
+                `Berikut link undangan pernikahan Putra-Putri kami:\n${item.url}\n`
             )
             .join('\n---\n\n');
         copyToClipboard(text);
@@ -769,14 +768,20 @@ Pak Hendra & Bu Dewi
 
     function shareWADirect(url, name) {
         const msg = encodeURIComponent(
-            `Assalamu'alaikum,\n\nKepada Yth. *${name}*\n\n` +
-            `Dengan penuh kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam pernikahan kami.\n\n` +
-            `🌸 *Sabrina Alya & Ahmad Aulia Akmal*\n` +
-            `📅 Akad: Senin, 27 Juli 2026\n` +
-            `📅 Resepsi: Sabtu, 1 Agustus 2026\n` +
-            `📍 Kota Malang\n\n` +
+            `Assalamu'alaikum Warahmatullahi Wabarakatuh,\n\n` +
+            `Kepada Yth. *${name}*\n\n` +
+            `Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri ` +
+            `Resepsi Pernikahan Putri kami:\n\n` +
+            `🌸 *Sabrina Alya, S.Akun., M.Ak.*\n` +
+            `dengan\n` +
+            `*Ahmad Aulia Akmal, S.Ds.*\n\n` +
+            `📅 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
+            `🕙 Pukul 11.00 - 14.00 WIB\n` +
+            `📍 Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
+            `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\n` +
             `Berikut link undangan digital:\n${url}\n\n` +
-            `Wassalamu'alaikum Wr. Wb. 🤲`
+            `Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤲\n\n` +
+            `Kel. Bpk. Mulyono & Ibu Ninis Pratiwi`
         );
         window.open(`https://wa.me/?text=${msg}`, '_blank');
     }

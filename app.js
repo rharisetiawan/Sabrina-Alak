@@ -8,16 +8,9 @@
 // ================================================
 // CONSTANTS & CONFIG
 // ================================================
-const WEDDING_DATE = new Date('2026-07-27T08:00:00+07:00');
+const WEDDING_DATE = new Date('2026-08-01T11:00:00+07:00');
 const GALLERY_IMAGES = [
-    'img/cover.jpg',
-    'img/bride.jpg',
-    'img/groom.jpg',
-    'img/gallery.jpg',
-    'img/undangan-1.jpg',
-    'img/undangan-2.jpg',
-    'img/undangan-3.jpg',
-    'img/undangan-4.jpg'
+    'img/keluarga.jpg'
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini
