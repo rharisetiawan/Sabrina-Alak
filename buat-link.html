@@ -732,10 +732,22 @@ Pak Hendra & Bu Dewi
     function copyWAFormat() {
         const text = generatedLinks
             .map(item =>
-                `Assalamu'alaikum, Kepada Yth. *${item.name}*\n` +
-                `Berikut link undangan pernikahan Putra-Putri kami:\n${item.url}\n`
+                `Assalamu'alaikum Warahmatullahi Wabarakatuh,\n\n` +
+                `Kepada Yth. *${item.name}*\n\n` +
+                `Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri ` +
+                `Resepsi Pernikahan Putri kami:\n\n` +
+                `🌸 *Sabrina Alya, S.Akun., M.Ak.*\n` +
+                `dengan\n` +
+                `*Ahmad Aulia Akmal, S.Ds.*\n\n` +
+                `📅 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
+                `🕙 Pukul 11.00 - 14.00 WIB\n` +
+                `📍 Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
+                `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\n` +
+                `Berikut link undangan digital:\n${item.url}\n\n` +
+                `Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤲\n\n` +
+                `Kel. Bpk. Mulyono & Ibu Ninis Pratiwi`
             )
-            .join('\n---\n\n');
+            .join('\n\n' + '─'.repeat(30) + '\n\n');
         copyToClipboard(text);
         showToast('✅ Format WhatsApp disalin! Paste ke WA Web.');
     }

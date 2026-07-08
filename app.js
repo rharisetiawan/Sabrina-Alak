@@ -14,9 +14,8 @@ const GALLERY_IMAGES = [
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini
-// NIKI - Take A Chance With Me: iygXgP2nOF4
-// Cara ganti: buka YouTube, copy bagian ?v=XXXXX dari URL-nya
-const YT_VIDEO_ID = 'iygXgP2nOF4';
+// Sampai Jadi Debu - GUT ORCHESTRA: 9KVattKxSKg
+const YT_VIDEO_ID = '9KVattKxSKg';
 
 // ✏️ GOOGLE SCRIPT URL: masukkan link Web App Google Apps Script Anda di sini
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYRob2MYjA4cK_JiNjIaqwfvlLX-4nkhXbucEBRjT1bbBFHXCvJSB36OonyHGfQasr/exec';
