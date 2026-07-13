@@ -10,7 +10,7 @@
 // ================================================
 const WEDDING_DATE = new Date('2026-08-01T11:00:00+07:00');
 const GALLERY_IMAGES = [
-    'img/keluarga.jpg'
+    'img/keluarga-full.jpeg'
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini
