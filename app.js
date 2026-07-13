@@ -14,8 +14,8 @@ const GALLERY_IMAGES = [
 ];
 
 // ✏️ GANTI LAGU: ubah YouTube Video ID di bawah ini
-// Sampai Jadi Debu - GUT ORCHESTRA: 9KVattKxSKg
-const YT_VIDEO_ID = '9KVattKxSKg';
+// Banda Neira - Sampai Jadi Debu: t4cVF6OTS-w
+const YT_VIDEO_ID = 't4cVF6OTS-w';
 
 // ✏️ GOOGLE SCRIPT URL: masukkan link Web App Google Apps Script Anda di sini
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYRob2MYjA4cK_JiNjIaqwfvlLX-4nkhXbucEBRjT1bbBFHXCvJSB36OonyHGfQasr/exec';
@@ -261,7 +261,7 @@ function setMusicPlaying(playing) {
         musicBtn.setAttribute('title', 'Pause Musik');
         // Tampilkan info lagu
         if (infoEl) {
-            infoEl.textContent = '🎵 NIKI — Take A Chance With Me';
+            infoEl.textContent = '🎵 Banda Neira — Sampai Jadi Debu';
             infoEl.classList.add('show');
             // Auto hide setelah 5 detik
             clearTimeout(infoEl._timer);
