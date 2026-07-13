@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
             --primary: #2d6a1f;
@@ -736,20 +736,20 @@ Pak Hendra & Bu Dewi
                 `Kepada Yth. *${item.name}*\n\n` +
                 `Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri ` +
                 `Resepsi Pernikahan Putri kami:\n\n` +
-                `🌸 *Sabrina Alya, S.Akun., M.Ak.*\n` +
+                `\uD83C\uDF38 *Sabrina Alya, S.Akun., M.Ak.*\n` +
                 `dengan\n` +
                 `*Ahmad Aulia Akmal, S.Ds.*\n\n` +
-                `📅 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
-                `🕙 Pukul 11.00 - 14.00 WIB\n` +
-                `📍 Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
+                `\uD83D\uDCC5 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
+                `\uD83D\uDD59 Pukul 11.00 - 14.00 WIB\n` +
+                `\uD83D\uDCCD Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
                 `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\n` +
                 `Berikut link undangan digital:\n${item.url}\n\n` +
-                `Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤲\n\n` +
+                `Wassalamu'alaikum Warahmatullahi Wabarakatuh \uD83E\uDD32\n\n` +
                 `Kel. Bpk. Mulyono & Ibu Ninis Pratiwi (Malang)`
             )
-            .join('\n\n' + '─'.repeat(30) + '\n\n');
+            .join('\n\n' + '\u2500'.repeat(30) + '\n\n');
         copyToClipboard(text);
-        showToast('✅ Format WhatsApp disalin! Paste ke WA Web.');
+        showToast('\u2705 Format WhatsApp disalin! Paste ke WA Web.');
     }
 
     function copyToClipboard(text) {
@@ -784,15 +784,15 @@ Pak Hendra & Bu Dewi
             `Kepada Yth. *${name}*\n\n` +
             `Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri ` +
             `Resepsi Pernikahan Putri kami:\n\n` +
-            `🌸 *Sabrina Alya, S.Akun., M.Ak.*\n` +
+            `\uD83C\uDF38 *Sabrina Alya, S.Akun., M.Ak.*\n` +
             `dengan\n` +
             `*Ahmad Aulia Akmal, S.Ds.*\n\n` +
-            `📅 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
-            `🕙 Pukul 11.00 - 14.00 WIB\n` +
-            `📍 Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
+            `\uD83D\uDCC5 *Resepsi:* Sabtu, 1 Agustus 2026\n` +
+            `\uD83D\uDD59 Pukul 11.00 - 14.00 WIB\n` +
+            `\uD83D\uDCCD Gedung Aula Utama Universitas Gajayana, Malang\n\n` +
             `Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.\n\n` +
             `Berikut link undangan digital:\n${url}\n\n` +
-            `Wassalamu'alaikum Warahmatullahi Wabarakatuh 🤲\n\n` +
+            `Wassalamu'alaikum Warahmatullahi Wabarakatuh \uD83E\uDD32\n\n` +
             `Kel. Bpk. Mulyono & Ibu Ninis Pratiwi (Malang)`
         );
         window.open(`https://wa.me/?text=${msg}`, '_blank');
